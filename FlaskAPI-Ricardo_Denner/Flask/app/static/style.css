@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+/* Importa a fonte 'Poppins' do Google Fonts com diferentes pesos de 300, 400, 500 e 600 para variações de espessura no texto. */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/* Remove o espaçamento padrão (margem e padding) de todos os elementos e define 'box-sizing' para controlar como o espaçamento e bordas são calculados em relação ao tamanho do elemento. Define também a fonte 'Poppins' para todos os elementos. */
+
+nav{
+    background-color: #18929D;
+    padding: 10px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Estiliza a barra de navegação (nav). Define a cor de fundo, padding para espaçamento interno, usa 'display: flex' para alinhar os itens horizontalmente e garante que eles fiquem espaçados uniformemente com 'justify-content'. 'align-items: center' alinha verticalmente os itens ao centro. */
+
+nav .logo a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 35px;
+    font-weight: 600;
+}
+/* Estiliza o link dentro da logo na barra de navegação, removendo a decoração (sublinhado), definindo a cor como branca, tamanho de fonte de 35px e peso da fonte 600 (negrito). */
+
+nav ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 10px;
+}
+/* Estiliza o <ul> (lista) da navegação. Usa 'display: flex' para alinhar os itens horizontalmente, remove os marcadores de lista com 'list-style: none' e adiciona padding para espaçamento. */
+
+nav li{
+    margin-left: 7px;
+}
+/* Adiciona margem à esquerda para cada item da lista, espaçando os itens horizontalmente. */
+
+nav li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+/* Estiliza os links dentro dos itens de lista. Remove a decoração (sublinhado), define a cor branca, ajusta o tamanho e peso da fonte, adiciona padding e bordas arredondadas. A transição de 0.3s suaviza o efeito ao passar o mouse. */
+
+nav li a:hover{
+    background-color: white;
+    color: black;
+}
+/* Ao passar o mouse sobre os links, a cor de fundo muda para branca e o texto para preto, criando um efeito de destaque. */
+
+.banner{
+    height: 100vh;
+    background: linear-gradient( rgba(0,0,0,0.281), rgba(0,0,0,0.308)),url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+/* Estiliza a área de banner. Define a altura como 100% da tela, usa um fundo gradiente sobre uma imagem, que é centralizada e coberta em toda a área sem repetir. Os conteúdos dentro do banner são centralizados vertical e horizontalmente. */
+
+.texto .titulo{
+    color: #fff;
+    font-size: 60px;
+    font-weight: 600;
+}
+/* Estiliza o título principal do banner. O texto é branco, grande (60px), e com peso de fonte 600 (negrito). */
+
+.texto .sub_titulo{
+    color: #fff;
+    font-size: 58px;
+    font-weight: 600;
+}
+/* Estiliza o subtítulo do banner de forma semelhante ao título, com uma leve diferença no tamanho da fonte (58px). */
+
+.texto .botoes{
+    margin-top: 30px;
+}
+/* Adiciona espaçamento superior de 30px aos botões dentro do texto no banner. */
+
+.texto .botoes button{
+    height: 55px;
+    width: 170px;
+    border-radius: 5px;
+    border: 0;
+    margin: 0 10px;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0 10px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+}
+/* Estiliza os botões no banner. Define altura e largura fixas, bordas arredondadas, e sem borda visível. O texto é centralizado com padding, a fonte tem tamanho médio (20px), e a transição de 0.3s suaviza o efeito de hover. */
+
+.texto .botoes button.n-overlay{
+    color: white;
+    background: none;
+    border: 2px solid white;
+}
+/* Estiliza os botões com a classe 'n-overlay' (sem preenchimento). O texto é branco e a borda é sólida branca. */
+
+.texto .botoes button.n-overlay:hover{
+    color: black;
+    background-color: white;
+}
+/* Ao passar o mouse sobre o botão 'n-overlay', o fundo muda para branco e o texto para preto, criando um efeito de inversão de cores. */
+
+.texto .botoes button.overlay{
+    background: white;
+    color: black;
+    animation: vibrar 0.5s ease-in-out infinite both;
+}
+/* O botão 'overlay' tem fundo branco, texto preto e aplica a animação 'vibrar' continuamente para criar um efeito de vibração. */
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+/* Centraliza o conteúdo dentro da div 'container' e adiciona margem superior de 50px. */
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+/* Estiliza o cabeçalho (h1) com um tamanho grande de fonte (2.5 rem) e adiciona um espaçamento inferior de 20px. */
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; /* Alinha os botões com espaço entre eles */
+    width: 100%;
+}
+/* Cria um container flexível para os botões, com espaçamento entre eles e ocupa toda a largura disponível. */
+
+.left-buttons {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões à esquerda */
+}
+/* Estiliza os botões à esquerda para que fiquem alinhados lado a lado com um espaço de 10px entre eles. */
+
+.right-button {
+  margin-left: auto; /* Empurra o botão da direita para o extremo direito */
+}
+/* O botão com a classe 'right-button' é empurrado para a extrema direita usando 'margin-left: auto'. */
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+/* Estiliza os botões com fundo verde, texto branco, padding e bordas arredondadas. Também adiciona uma transição suave de 0.3s para o efeito hover. */
+
+.btn:hover {
+    background-color: #45a049;
+}
+/* Ao passar o mouse sobre o botão, a cor de fundo muda para um verde mais escuro. */
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #888;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.danger {
+    color: red;
+    font-weight: bold;
+}
+/* O rodapé é centralizado com uma cor de texto acinzentada e espaçamento superior de 30px. */
+
+@keyframes vibrar {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+/* Define a animação 'vibrar', que faz o botão aumentar levemente de tamanho e retornar ao tamanho original de forma contínua. */

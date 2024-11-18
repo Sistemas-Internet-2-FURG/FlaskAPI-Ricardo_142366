@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Aluno</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .back-button {
+            background-color: #2196F3;
+        }
+
+        .back-button:hover {
+            background-color: #1976D2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastrar Novo Aluno</h2>
+        <form method="POST">
+            <label for="nome">Nome do Aluno</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="turma">Turma</label>
+            <select id="turma" name="turma_id" required>
+                {% for turma in turmas %}
+                    <option value="{{ turma.id }}">{{ turma.nome }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <button class="back-button" onclick="window.location.href='/'">Voltar à tela inicial</button>
+    </div>
+    
+    <footer>
+        &copy; 2024 Sistema de Cadastro
+    </footer>
+</body>
+</html>

@@ -1,0 +1,7 @@
+Flask==2.1.1
+Flask-SQLAlchemy==2.5.1
+
+flask db init
+flask db migrate -m "Create tables for Turma and Aluno"
+flask db upgrade
+flask run 

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Turma</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .delete-button:hover {
+            background-color: #e53935;
+        }
+
+        .back-button {
+            background-color: #2196F3;
+        }
+
+        .back-button:hover {
+            background-color: #1976D2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            width: 100%;
+        }
+        .alert {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .alert-success {
+            background-color: #4CAF50;
+        }
+        .alert-error {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastrar Nova Turma</h2>
+        <form method="POST">
+            <label for="nome">Nome da Turma</label>
+            <input type="text" id="nome" name="nome" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <h3>Turmas Cadastradas</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome da Turma</th>
+                    <th>Quantidade de Alunos</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for turma in turmas %}
+                <tr>
+                    <td>{{ turma.nome }}</td>
+                    <td>{{ turma.quantidade_alunos }}</td>
+                    <td>
+                        <button class="delete-button" onclick="deleteTurma({{ turma.id }})">Excluir</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="message" class="alert" style="display: none;"></div>
+
+        <button class="back-button" onclick="window.location.href='/'">Voltar à tela inicial</button>
+    </div>
+    
+    <footer>
+        &copy; 2024 Sistema de Cadastro
+    </footer>
+
+    <script>
+        function deleteTurma(turmaId) {
+            if (!confirm('Tem certeza que deseja excluir esta turma? A exclusão só será permitida se não houver alunos na turma.')) {
+                return;
+            }
+
+            fetch(`/delete_turma/${turmaId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messageDiv = document.getElementById('message');
+                if (data.message.includes('sucesso')) {
+                    messageDiv.className = 'alert alert-success';
+                } else {
+                    messageDiv.className = 'alert alert-error';
+                }
+                messageDiv.innerText = data.message;
+                messageDiv.style.display = 'block';
+
+                // Atualizar a lista de turmas após a exclusão
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                const messageDiv = document.getElementById('message');
+                messageDiv.className = 'alert alert-error';
+                messageDiv.innerText = 'Ocorreu um erro ao tentar excluir a turma.';
+                messageDiv.style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>
